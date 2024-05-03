@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 using Thrift;
 using Thrift.Collections;
 using Thrift.Protocol;
@@ -114,7 +115,7 @@ public partial class TDownloadDataReq : TBase
 
   public TDownloadDataReq DeepCopy()
   {
-    var tmp341 = new TDownloadDataReq()
+    var tmp341 = new TDownloadDataReq();
     if((SessionHandle != null))
     {
       tmp341.SessionHandle = (TSessionHandle)this.SessionHandle.DeepCopy();
@@ -352,34 +353,34 @@ public partial class TDownloadDataReq : TBase
 
   public override string ToString()
   {
-    var tmp349 = new StringBuilder("TDownloadDataReq(");
+    var sb = new StringBuilder("TDownloadDataReq(");
     if((SessionHandle != null))
     {
-      tmp349.Append(", SessionHandle: ");
-      SessionHandle.ToString(tmp349);
+      sb.Append(", SessionHandle: ");
+      sb.Append(SessionHandle);
     }
     if((TableName != null) && __isset.tableName)
     {
-      tmp349.Append(", TableName: ");
-      TableName.ToString(tmp349);
+      sb.Append(", TableName: ");
+      sb.Append(TableName);
     }
     if((Query != null) && __isset.@query)
     {
-      tmp349.Append(", Query: ");
-      Query.ToString(tmp349);
+      sb.Append(", Query: ");
+      sb.Append(Query);
     }
     if((Format != null) && __isset.@format)
     {
-      tmp349.Append(", Format: ");
-      Format.ToString(tmp349);
+      sb.Append(", Format: ");
+      sb.Append(Format);
     }
     if((DownloadOptions != null) && __isset.downloadOptions)
     {
-      tmp349.Append(", DownloadOptions: ");
-      DownloadOptions.ToString(tmp349);
+      sb.Append(", DownloadOptions: ");
+      sb.Append(DownloadOptions);
     }
-    tmp349.Append(')');
-    return tmp349.ToString();
+    sb.Append(')');
+    return sb.ToString();
   }
 }
 

@@ -32,43 +32,28 @@ using Thrift.Processor;
 #pragma warning disable IDE0083  // pattern matching "that is not SomeType" requires net5.0 but we still support earlier versions
 
 
-public partial class TI32Value : TBase
+public partial class TGetQueryIdResp : TBase
 {
-  private int _value;
 
-  public int Value
-  {
-    get
-    {
-      return _value;
-    }
-    set
-    {
-      __isset.@value = true;
-      this._value = value;
-    }
-  }
+  public string QueryId { get; set; }
 
-
-  public Isset __isset;
-  public struct Isset
-  {
-    public bool @value;
-  }
-
-  public TI32Value()
+  public TGetQueryIdResp()
   {
   }
 
-  public TI32Value DeepCopy()
+  public TGetQueryIdResp(string queryId) : this()
   {
-    var tmp98 = new TI32Value()
-    if(__isset.@value)
+    this.QueryId = queryId;
+  }
+
+  public TGetQueryIdResp DeepCopy()
+  {
+    var tmp542 = new TGetQueryIdResp();
+    if((QueryId != null))
     {
-      tmp98.Value = this.Value;
+      tmp542.QueryId = this.QueryId;
     }
-    tmp98.__isset.@value = this.__isset.@value;
-    return tmp98;
+    return tmp542;
   }
 
   public async global::System.Threading.Tasks.Task ReadAsync(TProtocol iprot, CancellationToken cancellationToken)
@@ -76,6 +61,7 @@ public partial class TI32Value : TBase
     iprot.IncrementRecursionDepth();
     try
     {
+      bool isset_queryId = false;
       TField field;
       await iprot.ReadStructBeginAsync(cancellationToken);
       while (true)
@@ -89,9 +75,10 @@ public partial class TI32Value : TBase
         switch (field.ID)
         {
           case 1:
-            if (field.Type == TType.I32)
+            if (field.Type == TType.String)
             {
-              Value = await iprot.ReadI32Async(cancellationToken);
+              QueryId = await iprot.ReadStringAsync(cancellationToken);
+              isset_queryId = true;
             }
             else
             {
@@ -107,6 +94,10 @@ public partial class TI32Value : TBase
       }
 
       await iprot.ReadStructEndAsync(cancellationToken);
+      if (!isset_queryId)
+      {
+        throw new TProtocolException(TProtocolException.INVALID_DATA);
+      }
     }
     finally
     {
@@ -119,16 +110,16 @@ public partial class TI32Value : TBase
     oprot.IncrementRecursionDepth();
     try
     {
-      var tmp99 = new TStruct("TI32Value");
-      await oprot.WriteStructBeginAsync(tmp99, cancellationToken);
-      var tmp100 = new TField();
-      if(__isset.@value)
+      var tmp543 = new TStruct("TGetQueryIdResp");
+      await oprot.WriteStructBeginAsync(tmp543, cancellationToken);
+      var tmp544 = new TField();
+      if((QueryId != null))
       {
-        tmp100.Name = "value";
-        tmp100.Type = TType.I32;
-        tmp100.ID = 1;
-        await oprot.WriteFieldBeginAsync(tmp100, cancellationToken);
-        await oprot.WriteI32Async(Value, cancellationToken);
+        tmp544.Name = "queryId";
+        tmp544.Type = TType.String;
+        tmp544.ID = 1;
+        await oprot.WriteFieldBeginAsync(tmp544, cancellationToken);
+        await oprot.WriteStringAsync(QueryId, cancellationToken);
         await oprot.WriteFieldEndAsync(cancellationToken);
       }
       await oprot.WriteFieldStopAsync(cancellationToken);
@@ -142,17 +133,17 @@ public partial class TI32Value : TBase
 
   public override bool Equals(object that)
   {
-    if (!(that is TI32Value other)) return false;
+    if (!(that is TGetQueryIdResp other)) return false;
     if (ReferenceEquals(this, other)) return true;
-    return ((__isset.@value == other.__isset.@value) && ((!__isset.@value) || (global::System.Object.Equals(Value, other.Value))));
+    return global::System.Object.Equals(QueryId, other.QueryId);
   }
 
   public override int GetHashCode() {
     int hashcode = 157;
     unchecked {
-      if(__isset.@value)
+      if((QueryId != null))
       {
-        hashcode = (hashcode * 397) + Value.GetHashCode();
+        hashcode = (hashcode * 397) + QueryId.GetHashCode();
       }
     }
     return hashcode;
@@ -160,16 +151,14 @@ public partial class TI32Value : TBase
 
   public override string ToString()
   {
-    var tmp101 = new StringBuilder("TI32Value(");
-    int tmp102 = 0;
-    if(__isset.@value)
+    var sb = new StringBuilder("TGetQueryIdResp(");
+    if((QueryId != null))
     {
-      if(0 < tmp102++) { tmp101.Append(", "); }
-      tmp101.Append("Value: ");
-      Value.ToString(tmp101);
+      sb.Append(", QueryId: ");
+      sb.Append(QueryId);
     }
-    tmp101.Append(')');
-    return tmp101.ToString();
+    sb.Append(')');
+    return sb.ToString();
   }
 }
 

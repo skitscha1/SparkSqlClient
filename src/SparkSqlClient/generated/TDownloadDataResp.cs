@@ -32,28 +32,35 @@ using Thrift.Processor;
 #pragma warning disable IDE0083  // pattern matching "that is not SomeType" requires net5.0 but we still support earlier versions
 
 
-public partial class TCancelOperationReq : TBase
+public partial class TDownloadDataResp : TBase
 {
+
+  public TStatus Status { get; set; }
 
   public TOperationHandle OperationHandle { get; set; }
 
-  public TCancelOperationReq()
+  public TDownloadDataResp()
   {
   }
 
-  public TCancelOperationReq(TOperationHandle operationHandle) : this()
+  public TDownloadDataResp(TStatus @status, TOperationHandle operationHandle) : this()
   {
+    this.Status = @status;
     this.OperationHandle = operationHandle;
   }
 
-  public TCancelOperationReq DeepCopy()
+  public TDownloadDataResp DeepCopy()
   {
-    var tmp450 = new TCancelOperationReq()
+    var tmp351 = new TDownloadDataResp();
+    if((Status != null))
+    {
+      tmp351.Status = (TStatus)this.Status.DeepCopy();
+    }
     if((OperationHandle != null))
     {
-      tmp450.OperationHandle = (TOperationHandle)this.OperationHandle.DeepCopy();
+      tmp351.OperationHandle = (TOperationHandle)this.OperationHandle.DeepCopy();
     }
-    return tmp450;
+    return tmp351;
   }
 
   public async global::System.Threading.Tasks.Task ReadAsync(TProtocol iprot, CancellationToken cancellationToken)
@@ -61,6 +68,7 @@ public partial class TCancelOperationReq : TBase
     iprot.IncrementRecursionDepth();
     try
     {
+      bool isset_status = false;
       bool isset_operationHandle = false;
       TField field;
       await iprot.ReadStructBeginAsync(cancellationToken);
@@ -75,6 +83,18 @@ public partial class TCancelOperationReq : TBase
         switch (field.ID)
         {
           case 1:
+            if (field.Type == TType.Struct)
+            {
+              Status = new TStatus();
+              await Status.ReadAsync(iprot, cancellationToken);
+              isset_status = true;
+            }
+            else
+            {
+              await TProtocolUtil.SkipAsync(iprot, field.Type, cancellationToken);
+            }
+            break;
+          case 2:
             if (field.Type == TType.Struct)
             {
               OperationHandle = new TOperationHandle();
@@ -95,6 +115,10 @@ public partial class TCancelOperationReq : TBase
       }
 
       await iprot.ReadStructEndAsync(cancellationToken);
+      if (!isset_status)
+      {
+        throw new TProtocolException(TProtocolException.INVALID_DATA);
+      }
       if (!isset_operationHandle)
       {
         throw new TProtocolException(TProtocolException.INVALID_DATA);
@@ -111,15 +135,24 @@ public partial class TCancelOperationReq : TBase
     oprot.IncrementRecursionDepth();
     try
     {
-      var tmp451 = new TStruct("TCancelOperationReq");
-      await oprot.WriteStructBeginAsync(tmp451, cancellationToken);
-      var tmp452 = new TField();
+      var tmp352 = new TStruct("TDownloadDataResp");
+      await oprot.WriteStructBeginAsync(tmp352, cancellationToken);
+      var tmp353 = new TField();
+      if((Status != null))
+      {
+        tmp353.Name = "status";
+        tmp353.Type = TType.Struct;
+        tmp353.ID = 1;
+        await oprot.WriteFieldBeginAsync(tmp353, cancellationToken);
+        await Status.WriteAsync(oprot, cancellationToken);
+        await oprot.WriteFieldEndAsync(cancellationToken);
+      }
       if((OperationHandle != null))
       {
-        tmp452.Name = "operationHandle";
-        tmp452.Type = TType.Struct;
-        tmp452.ID = 1;
-        await oprot.WriteFieldBeginAsync(tmp452, cancellationToken);
+        tmp353.Name = "operationHandle";
+        tmp353.Type = TType.Struct;
+        tmp353.ID = 2;
+        await oprot.WriteFieldBeginAsync(tmp353, cancellationToken);
         await OperationHandle.WriteAsync(oprot, cancellationToken);
         await oprot.WriteFieldEndAsync(cancellationToken);
       }
@@ -134,14 +167,19 @@ public partial class TCancelOperationReq : TBase
 
   public override bool Equals(object that)
   {
-    if (!(that is TCancelOperationReq other)) return false;
+    if (!(that is TDownloadDataResp other)) return false;
     if (ReferenceEquals(this, other)) return true;
-    return global::System.Object.Equals(OperationHandle, other.OperationHandle);
+    return global::System.Object.Equals(Status, other.Status)
+      && global::System.Object.Equals(OperationHandle, other.OperationHandle);
   }
 
   public override int GetHashCode() {
     int hashcode = 157;
     unchecked {
+      if((Status != null))
+      {
+        hashcode = (hashcode * 397) + Status.GetHashCode();
+      }
       if((OperationHandle != null))
       {
         hashcode = (hashcode * 397) + OperationHandle.GetHashCode();
@@ -152,14 +190,19 @@ public partial class TCancelOperationReq : TBase
 
   public override string ToString()
   {
-    var tmp453 = new StringBuilder("TCancelOperationReq(");
+    var sb = new StringBuilder("TDownloadDataResp(");
+    if((Status != null))
+    {
+      sb.Append(", Status: ");
+      sb.Append(Status);
+    }
     if((OperationHandle != null))
     {
-      tmp453.Append(", OperationHandle: ");
-      OperationHandle.ToString(tmp453);
+      sb.Append(", OperationHandle: ");
+      sb.Append(OperationHandle);
     }
-    tmp453.Append(')');
-    return tmp453.ToString();
+    sb.Append(')');
+    return sb.ToString();
   }
 }
 

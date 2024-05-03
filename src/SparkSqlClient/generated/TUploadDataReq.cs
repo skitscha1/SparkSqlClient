@@ -87,7 +87,7 @@ public partial class TUploadDataReq : TBase
 
   public TUploadDataReq DeepCopy()
   {
-    var tmp331 = new TUploadDataReq()
+    var tmp331 = new TUploadDataReq();
     if((SessionHandle != null))
     {
       tmp331.SessionHandle = (TSessionHandle)this.SessionHandle.DeepCopy();
@@ -287,22 +287,22 @@ public partial class TUploadDataReq : TBase
     if((SessionHandle != null))
     {
       tmp334.Append(", SessionHandle: ");
-      SessionHandle.ToString(tmp334);
+      tmp334.Append(SessionHandle);
     }
     if((TableName != null) && __isset.tableName)
     {
       tmp334.Append(", TableName: ");
-      TableName.ToString(tmp334);
+      tmp334.Append(TableName);
     }
     if((Path != null) && __isset.@path)
     {
       tmp334.Append(", Path: ");
-      Path.ToString(tmp334);
+      tmp334.Append(Path);
     }
     if((Values != null))
     {
       tmp334.Append(", Values: ");
-      Values.ToString(tmp334);
+      tmp334.Append(Values);
     }
     tmp334.Append(')');
     return tmp334.ToString();

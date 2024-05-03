@@ -32,54 +32,28 @@ using Thrift.Processor;
 #pragma warning disable IDE0083  // pattern matching "that is not SomeType" requires net5.0 but we still support earlier versions
 
 
-public partial class TGetTablesResp : TBase
+public partial class TGetQueryIdReq : TBase
 {
-  private TOperationHandle _operationHandle;
 
-  public TStatus Status { get; set; }
+  public TOperationHandle OperationHandle { get; set; }
 
-  public TOperationHandle OperationHandle
-  {
-    get
-    {
-      return _operationHandle;
-    }
-    set
-    {
-      __isset.operationHandle = true;
-      this._operationHandle = value;
-    }
-  }
-
-
-  public Isset __isset;
-  public struct Isset
-  {
-    public bool operationHandle;
-  }
-
-  public TGetTablesResp()
+  public TGetQueryIdReq()
   {
   }
 
-  public TGetTablesResp(TStatus @status) : this()
+  public TGetQueryIdReq(TOperationHandle operationHandle) : this()
   {
-    this.Status = @status;
+    this.OperationHandle = operationHandle;
   }
 
-  public TGetTablesResp DeepCopy()
+  public TGetQueryIdReq DeepCopy()
   {
-    var tmp385 = new TGetTablesResp()
-    if((Status != null))
+    var tmp537 = new TGetQueryIdReq();
+    if((OperationHandle != null))
     {
-      tmp385.Status = (TStatus)this.Status.DeepCopy();
+      tmp537.OperationHandle = (TOperationHandle)this.OperationHandle.DeepCopy();
     }
-    if((OperationHandle != null) && __isset.operationHandle)
-    {
-      tmp385.OperationHandle = (TOperationHandle)this.OperationHandle.DeepCopy();
-    }
-    tmp385.__isset.operationHandle = this.__isset.operationHandle;
-    return tmp385;
+    return tmp537;
   }
 
   public async global::System.Threading.Tasks.Task ReadAsync(TProtocol iprot, CancellationToken cancellationToken)
@@ -87,7 +61,7 @@ public partial class TGetTablesResp : TBase
     iprot.IncrementRecursionDepth();
     try
     {
-      bool isset_status = false;
+      bool isset_operationHandle = false;
       TField field;
       await iprot.ReadStructBeginAsync(cancellationToken);
       while (true)
@@ -103,20 +77,9 @@ public partial class TGetTablesResp : TBase
           case 1:
             if (field.Type == TType.Struct)
             {
-              Status = new TStatus();
-              await Status.ReadAsync(iprot, cancellationToken);
-              isset_status = true;
-            }
-            else
-            {
-              await TProtocolUtil.SkipAsync(iprot, field.Type, cancellationToken);
-            }
-            break;
-          case 2:
-            if (field.Type == TType.Struct)
-            {
               OperationHandle = new TOperationHandle();
               await OperationHandle.ReadAsync(iprot, cancellationToken);
+              isset_operationHandle = true;
             }
             else
             {
@@ -132,7 +95,7 @@ public partial class TGetTablesResp : TBase
       }
 
       await iprot.ReadStructEndAsync(cancellationToken);
-      if (!isset_status)
+      if (!isset_operationHandle)
       {
         throw new TProtocolException(TProtocolException.INVALID_DATA);
       }
@@ -148,24 +111,15 @@ public partial class TGetTablesResp : TBase
     oprot.IncrementRecursionDepth();
     try
     {
-      var tmp386 = new TStruct("TGetTablesResp");
-      await oprot.WriteStructBeginAsync(tmp386, cancellationToken);
-      var tmp387 = new TField();
-      if((Status != null))
+      var tmp538 = new TStruct("TGetQueryIdReq");
+      await oprot.WriteStructBeginAsync(tmp538, cancellationToken);
+      var tmp539 = new TField();
+      if((OperationHandle != null))
       {
-        tmp387.Name = "status";
-        tmp387.Type = TType.Struct;
-        tmp387.ID = 1;
-        await oprot.WriteFieldBeginAsync(tmp387, cancellationToken);
-        await Status.WriteAsync(oprot, cancellationToken);
-        await oprot.WriteFieldEndAsync(cancellationToken);
-      }
-      if((OperationHandle != null) && __isset.operationHandle)
-      {
-        tmp387.Name = "operationHandle";
-        tmp387.Type = TType.Struct;
-        tmp387.ID = 2;
-        await oprot.WriteFieldBeginAsync(tmp387, cancellationToken);
+        tmp539.Name = "operationHandle";
+        tmp539.Type = TType.Struct;
+        tmp539.ID = 1;
+        await oprot.WriteFieldBeginAsync(tmp539, cancellationToken);
         await OperationHandle.WriteAsync(oprot, cancellationToken);
         await oprot.WriteFieldEndAsync(cancellationToken);
       }
@@ -180,20 +134,15 @@ public partial class TGetTablesResp : TBase
 
   public override bool Equals(object that)
   {
-    if (!(that is TGetTablesResp other)) return false;
+    if (!(that is TGetQueryIdReq other)) return false;
     if (ReferenceEquals(this, other)) return true;
-    return global::System.Object.Equals(Status, other.Status)
-      && ((__isset.operationHandle == other.__isset.operationHandle) && ((!__isset.operationHandle) || (global::System.Object.Equals(OperationHandle, other.OperationHandle))));
+    return global::System.Object.Equals(OperationHandle, other.OperationHandle);
   }
 
   public override int GetHashCode() {
     int hashcode = 157;
     unchecked {
-      if((Status != null))
-      {
-        hashcode = (hashcode * 397) + Status.GetHashCode();
-      }
-      if((OperationHandle != null) && __isset.operationHandle)
+      if((OperationHandle != null))
       {
         hashcode = (hashcode * 397) + OperationHandle.GetHashCode();
       }
@@ -203,19 +152,14 @@ public partial class TGetTablesResp : TBase
 
   public override string ToString()
   {
-    var tmp388 = new StringBuilder("TGetTablesResp(");
-    if((Status != null))
+    var sb = new StringBuilder("TGetQueryIdReq(");
+    if((OperationHandle != null))
     {
-      tmp388.Append(", Status: ");
-      Status.ToString(tmp388);
+      sb.Append(", OperationHandle: ");
+      sb.Append(OperationHandle);
     }
-    if((OperationHandle != null) && __isset.operationHandle)
-    {
-      tmp388.Append(", OperationHandle: ");
-      OperationHandle.ToString(tmp388);
-    }
-    tmp388.Append(')');
-    return tmp388.ToString();
+    sb.Append(')');
+    return sb.ToString();
   }
 }
 

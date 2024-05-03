@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 using Thrift;
 using Thrift.Collections;
 using Thrift.Protocol;
@@ -32,35 +33,35 @@ using Thrift.Processor;
 #pragma warning disable IDE0083  // pattern matching "that is not SomeType" requires net5.0 but we still support earlier versions
 
 
-public partial class TDoubleColumn : TBase
+public partial class TUploadDataResp : TBase
 {
 
-  public List<double> Values { get; set; }
+  public TStatus Status { get; set; }
 
-  public byte[] Nulls { get; set; }
+  public TOperationHandle OperationHandle { get; set; }
 
-  public TDoubleColumn()
+  public TUploadDataResp()
   {
   }
 
-  public TDoubleColumn(List<double> @values, byte[] @nulls) : this()
+  public TUploadDataResp(TStatus @status, TOperationHandle operationHandle) : this()
   {
-    this.Values = @values;
-    this.Nulls = @nulls;
+    this.Status = @status;
+    this.OperationHandle = operationHandle;
   }
 
-  public TDoubleColumn DeepCopy()
+  public TUploadDataResp DeepCopy()
   {
-    var tmp177 = new TDoubleColumn()
-    if((Values != null))
+    var tmp336 = new TUploadDataResp();
+    if((Status != null))
     {
-      tmp177.Values = this.Values.DeepCopy();
+      tmp336.Status = (TStatus)this.Status.DeepCopy();
     }
-    if((Nulls != null))
+    if((OperationHandle != null))
     {
-      tmp177.Nulls = this.Nulls.ToArray();
+      tmp336.OperationHandle = (TOperationHandle)this.OperationHandle.DeepCopy();
     }
-    return tmp177;
+    return tmp336;
   }
 
   public async global::System.Threading.Tasks.Task ReadAsync(TProtocol iprot, CancellationToken cancellationToken)
@@ -68,8 +69,8 @@ public partial class TDoubleColumn : TBase
     iprot.IncrementRecursionDepth();
     try
     {
-      bool isset_values = false;
-      bool isset_nulls = false;
+      bool isset_status = false;
+      bool isset_operationHandle = false;
       TField field;
       await iprot.ReadStructBeginAsync(cancellationToken);
       while (true)
@@ -83,20 +84,11 @@ public partial class TDoubleColumn : TBase
         switch (field.ID)
         {
           case 1:
-            if (field.Type == TType.List)
+            if (field.Type == TType.Struct)
             {
-              {
-                var _list178 = await iprot.ReadListBeginAsync(cancellationToken);
-                Values = new List<double>(_list178.Count);
-                for(int _i179 = 0; _i179 < _list178.Count; ++_i179)
-                {
-                  double _elem180;
-                  _elem180 = await iprot.ReadDoubleAsync(cancellationToken);
-                  Values.Add(_elem180);
-                }
-                await iprot.ReadListEndAsync(cancellationToken);
-              }
-              isset_values = true;
+              Status = new TStatus();
+              await Status.ReadAsync(iprot, cancellationToken);
+              isset_status = true;
             }
             else
             {
@@ -104,10 +96,11 @@ public partial class TDoubleColumn : TBase
             }
             break;
           case 2:
-            if (field.Type == TType.String)
+            if (field.Type == TType.Struct)
             {
-              Nulls = await iprot.ReadBinaryAsync(cancellationToken);
-              isset_nulls = true;
+              OperationHandle = new TOperationHandle();
+              await OperationHandle.ReadAsync(iprot, cancellationToken);
+              isset_operationHandle = true;
             }
             else
             {
@@ -123,11 +116,11 @@ public partial class TDoubleColumn : TBase
       }
 
       await iprot.ReadStructEndAsync(cancellationToken);
-      if (!isset_values)
+      if (!isset_status)
       {
         throw new TProtocolException(TProtocolException.INVALID_DATA);
       }
-      if (!isset_nulls)
+      if (!isset_operationHandle)
       {
         throw new TProtocolException(TProtocolException.INVALID_DATA);
       }
@@ -143,30 +136,25 @@ public partial class TDoubleColumn : TBase
     oprot.IncrementRecursionDepth();
     try
     {
-      var tmp181 = new TStruct("TDoubleColumn");
-      await oprot.WriteStructBeginAsync(tmp181, cancellationToken);
-      var tmp182 = new TField();
-      if((Values != null))
+      var tmp337 = new TStruct("TUploadDataResp");
+      await oprot.WriteStructBeginAsync(tmp337, cancellationToken);
+      var tmp338 = new TField();
+      if((Status != null))
       {
-        tmp182.Name = "values";
-        tmp182.Type = TType.List;
-        tmp182.ID = 1;
-        await oprot.WriteFieldBeginAsync(tmp182, cancellationToken);
-        await oprot.WriteListBeginAsync(new TList(TType.Double, Values.Count), cancellationToken);
-        foreach (double _iter183 in Values)
-        {
-          await oprot.WriteDoubleAsync(_iter183, cancellationToken);
-        }
-        await oprot.WriteListEndAsync(cancellationToken);
+        tmp338.Name = "status";
+        tmp338.Type = TType.Struct;
+        tmp338.ID = 1;
+        await oprot.WriteFieldBeginAsync(tmp338, cancellationToken);
+        await Status.WriteAsync(oprot, cancellationToken);
         await oprot.WriteFieldEndAsync(cancellationToken);
       }
-      if((Nulls != null))
+      if((OperationHandle != null))
       {
-        tmp182.Name = "nulls";
-        tmp182.Type = TType.String;
-        tmp182.ID = 2;
-        await oprot.WriteFieldBeginAsync(tmp182, cancellationToken);
-        await oprot.WriteBinaryAsync(Nulls, cancellationToken);
+        tmp338.Name = "operationHandle";
+        tmp338.Type = TType.Struct;
+        tmp338.ID = 2;
+        await oprot.WriteFieldBeginAsync(tmp338, cancellationToken);
+        await OperationHandle.WriteAsync(oprot, cancellationToken);
         await oprot.WriteFieldEndAsync(cancellationToken);
       }
       await oprot.WriteFieldStopAsync(cancellationToken);
@@ -180,22 +168,22 @@ public partial class TDoubleColumn : TBase
 
   public override bool Equals(object that)
   {
-    if (!(that is TDoubleColumn other)) return false;
+    if (!(that is TUploadDataResp other)) return false;
     if (ReferenceEquals(this, other)) return true;
-    return TCollections.Equals(Values, other.Values)
-      && TCollections.Equals(Nulls, other.Nulls);
+    return global::System.Object.Equals(Status, other.Status)
+      && global::System.Object.Equals(OperationHandle, other.OperationHandle);
   }
 
   public override int GetHashCode() {
     int hashcode = 157;
     unchecked {
-      if((Values != null))
+      if((Status != null))
       {
-        hashcode = (hashcode * 397) + TCollections.GetHashCode(Values);
+        hashcode = (hashcode * 397) + Status.GetHashCode();
       }
-      if((Nulls != null))
+      if((OperationHandle != null))
       {
-        hashcode = (hashcode * 397) + Nulls.GetHashCode();
+        hashcode = (hashcode * 397) + OperationHandle.GetHashCode();
       }
     }
     return hashcode;
@@ -203,19 +191,19 @@ public partial class TDoubleColumn : TBase
 
   public override string ToString()
   {
-    var tmp184 = new StringBuilder("TDoubleColumn(");
-    if((Values != null))
+    var tmp339 = new StringBuilder("TUploadDataResp(");
+    if((Status != null))
     {
-      tmp184.Append(", Values: ");
-      Values.ToString(tmp184);
+      tmp339.Append(", Status: ");
+      tmp339.Append(Status);
     }
-    if((Nulls != null))
+    if((OperationHandle != null))
     {
-      tmp184.Append(", Nulls: ");
-      Nulls.ToString(tmp184);
+      tmp339.Append(", OperationHandle: ");
+      tmp339.Append(OperationHandle);
     }
-    tmp184.Append(')');
-    return tmp184.ToString();
+    tmp339.Append(')');
+    return tmp339.ToString();
   }
 }
 

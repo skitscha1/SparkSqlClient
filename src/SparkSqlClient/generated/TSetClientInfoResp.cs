@@ -32,43 +32,28 @@ using Thrift.Processor;
 #pragma warning disable IDE0083  // pattern matching "that is not SomeType" requires net5.0 but we still support earlier versions
 
 
-public partial class TStringValue : TBase
+public partial class TSetClientInfoResp : TBase
 {
-  private string _value;
 
-  public string Value
-  {
-    get
-    {
-      return _value;
-    }
-    set
-    {
-      __isset.@value = true;
-      this._value = value;
-    }
-  }
+  public TStatus Status { get; set; }
 
-
-  public Isset __isset;
-  public struct Isset
-  {
-    public bool @value;
-  }
-
-  public TStringValue()
+  public TSetClientInfoResp()
   {
   }
 
-  public TStringValue DeepCopy()
+  public TSetClientInfoResp(TStatus @status) : this()
   {
-    var tmp113 = new TStringValue()
-    if((Value != null) && __isset.@value)
+    this.Status = @status;
+  }
+
+  public TSetClientInfoResp DeepCopy()
+  {
+    var tmp276 = new TSetClientInfoResp();
+    if((Status != null))
     {
-      tmp113.Value = this.Value;
+      tmp276.Status = (TStatus)this.Status.DeepCopy();
     }
-    tmp113.__isset.@value = this.__isset.@value;
-    return tmp113;
+    return tmp276;
   }
 
   public async global::System.Threading.Tasks.Task ReadAsync(TProtocol iprot, CancellationToken cancellationToken)
@@ -76,6 +61,7 @@ public partial class TStringValue : TBase
     iprot.IncrementRecursionDepth();
     try
     {
+      bool isset_status = false;
       TField field;
       await iprot.ReadStructBeginAsync(cancellationToken);
       while (true)
@@ -89,9 +75,11 @@ public partial class TStringValue : TBase
         switch (field.ID)
         {
           case 1:
-            if (field.Type == TType.String)
+            if (field.Type == TType.Struct)
             {
-              Value = await iprot.ReadStringAsync(cancellationToken);
+              Status = new TStatus();
+              await Status.ReadAsync(iprot, cancellationToken);
+              isset_status = true;
             }
             else
             {
@@ -107,6 +95,10 @@ public partial class TStringValue : TBase
       }
 
       await iprot.ReadStructEndAsync(cancellationToken);
+      if (!isset_status)
+      {
+        throw new TProtocolException(TProtocolException.INVALID_DATA);
+      }
     }
     finally
     {
@@ -119,16 +111,16 @@ public partial class TStringValue : TBase
     oprot.IncrementRecursionDepth();
     try
     {
-      var tmp114 = new TStruct("TStringValue");
-      await oprot.WriteStructBeginAsync(tmp114, cancellationToken);
-      var tmp115 = new TField();
-      if((Value != null) && __isset.@value)
+      var tmp277 = new TStruct("TSetClientInfoResp");
+      await oprot.WriteStructBeginAsync(tmp277, cancellationToken);
+      var tmp278 = new TField();
+      if((Status != null))
       {
-        tmp115.Name = "value";
-        tmp115.Type = TType.String;
-        tmp115.ID = 1;
-        await oprot.WriteFieldBeginAsync(tmp115, cancellationToken);
-        await oprot.WriteStringAsync(Value, cancellationToken);
+        tmp278.Name = "status";
+        tmp278.Type = TType.Struct;
+        tmp278.ID = 1;
+        await oprot.WriteFieldBeginAsync(tmp278, cancellationToken);
+        await Status.WriteAsync(oprot, cancellationToken);
         await oprot.WriteFieldEndAsync(cancellationToken);
       }
       await oprot.WriteFieldStopAsync(cancellationToken);
@@ -142,17 +134,17 @@ public partial class TStringValue : TBase
 
   public override bool Equals(object that)
   {
-    if (!(that is TStringValue other)) return false;
+    if (!(that is TSetClientInfoResp other)) return false;
     if (ReferenceEquals(this, other)) return true;
-    return ((__isset.@value == other.__isset.@value) && ((!__isset.@value) || (global::System.Object.Equals(Value, other.Value))));
+    return global::System.Object.Equals(Status, other.Status);
   }
 
   public override int GetHashCode() {
     int hashcode = 157;
     unchecked {
-      if((Value != null) && __isset.@value)
+      if((Status != null))
       {
-        hashcode = (hashcode * 397) + Value.GetHashCode();
+        hashcode = (hashcode * 397) + Status.GetHashCode();
       }
     }
     return hashcode;
@@ -160,16 +152,14 @@ public partial class TStringValue : TBase
 
   public override string ToString()
   {
-    var tmp116 = new StringBuilder("TStringValue(");
-    int tmp117 = 0;
-    if((Value != null) && __isset.@value)
+    var sb = new StringBuilder("TSetClientInfoResp(");
+    if((Status != null))
     {
-      if(0 < tmp117++) { tmp116.Append(", "); }
-      tmp116.Append("Value: ");
-      Value.ToString(tmp116);
+      sb.Append(", Status: ");
+      sb.Append(Status);
     }
-    tmp116.Append(')');
-    return tmp116.ToString();
+    sb.Append(')');
+    return sb.ToString();
   }
 }
 

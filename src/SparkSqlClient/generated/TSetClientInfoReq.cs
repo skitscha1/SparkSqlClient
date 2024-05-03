@@ -32,28 +32,54 @@ using Thrift.Processor;
 #pragma warning disable IDE0083  // pattern matching "that is not SomeType" requires net5.0 but we still support earlier versions
 
 
-public partial class TCloseSessionReq : TBase
+public partial class TSetClientInfoReq : TBase
 {
+  private Dictionary<string, string> _configuration;
 
   public TSessionHandle SessionHandle { get; set; }
 
-  public TCloseSessionReq()
+  public Dictionary<string, string> Configuration
+  {
+    get
+    {
+      return _configuration;
+    }
+    set
+    {
+      __isset.@configuration = true;
+      this._configuration = value;
+    }
+  }
+
+
+  public Isset __isset;
+  public struct Isset
+  {
+    public bool @configuration;
+  }
+
+  public TSetClientInfoReq()
   {
   }
 
-  public TCloseSessionReq(TSessionHandle sessionHandle) : this()
+  public TSetClientInfoReq(TSessionHandle sessionHandle) : this()
   {
     this.SessionHandle = sessionHandle;
   }
 
-  public TCloseSessionReq DeepCopy()
+  public TSetClientInfoReq DeepCopy()
   {
-    var tmp281 = new TCloseSessionReq()
+    var tmp266 = new TSetClientInfoReq();
     if((SessionHandle != null))
     {
-      tmp281.SessionHandle = (TSessionHandle)this.SessionHandle.DeepCopy();
+      tmp266.SessionHandle = (TSessionHandle)this.SessionHandle.DeepCopy();
     }
-    return tmp281;
+    if((Configuration != null) && __isset.@configuration)
+    {
+      tmp266.Configuration = this.Configuration.DeepCopy();
+    }
+    tmp266.__isset.@configuration = this.__isset.@configuration;
+    return tmp266;
   }
 
   public async global::System.Threading.Tasks.Task ReadAsync(TProtocol iprot, CancellationToken cancellationToken)
@@ -86,6 +112,28 @@ public partial class TCloseSessionReq : TBase
               await TProtocolUtil.SkipAsync(iprot, field.Type, cancellationToken);
             }
             break;
+          case 2:
+            if (field.Type == TType.Map)
+            {
+              {
+                var _map267 = await iprot.ReadMapBeginAsync(cancellationToken);
+                Configuration = new Dictionary<string, string>(_map267.Count);
+                for(int _i268 = 0; _i268 < _map267.Count; ++_i268)
+                {
+                  string _key269;
+                  string _val270;
+                  _key269 = await iprot.ReadStringAsync(cancellationToken);
+                  _val270 = await iprot.ReadStringAsync(cancellationToken);
+                  Configuration[_key269] = _val270;
+                }
+                await iprot.ReadMapEndAsync(cancellationToken);
+              }
+            }
+            else
+            {
+              await TProtocolUtil.SkipAsync(iprot, field.Type, cancellationToken);
+            }
+            break;
           default: 
             await TProtocolUtil.SkipAsync(iprot, field.Type, cancellationToken);
             break;
@@ -111,16 +159,31 @@ public partial class TCloseSessionReq : TBase
     oprot.IncrementRecursionDepth();
     try
     {
-      var tmp282 = new TStruct("TCloseSessionReq");
-      await oprot.WriteStructBeginAsync(tmp282, cancellationToken);
-      var tmp283 = new TField();
+      var tmp271 = new TStruct("TSetClientInfoReq");
+      await oprot.WriteStructBeginAsync(tmp271, cancellationToken);
+      var tmp272 = new TField();
       if((SessionHandle != null))
       {
-        tmp283.Name = "sessionHandle";
-        tmp283.Type = TType.Struct;
-        tmp283.ID = 1;
-        await oprot.WriteFieldBeginAsync(tmp283, cancellationToken);
+        tmp272.Name = "sessionHandle";
+        tmp272.Type = TType.Struct;
+        tmp272.ID = 1;
+        await oprot.WriteFieldBeginAsync(tmp272, cancellationToken);
         await SessionHandle.WriteAsync(oprot, cancellationToken);
+        await oprot.WriteFieldEndAsync(cancellationToken);
+      }
+      if((Configuration != null) && __isset.@configuration)
+      {
+        tmp272.Name = "configuration";
+        tmp272.Type = TType.Map;
+        tmp272.ID = 2;
+        await oprot.WriteFieldBeginAsync(tmp272, cancellationToken);
+        await oprot.WriteMapBeginAsync(new TMap(TType.String, TType.String, Configuration.Count), cancellationToken);
+        foreach (string _iter273 in Configuration.Keys)
+        {
+          await oprot.WriteStringAsync(_iter273, cancellationToken);
+          await oprot.WriteStringAsync(Configuration[_iter273], cancellationToken);
+        }
+        await oprot.WriteMapEndAsync(cancellationToken);
         await oprot.WriteFieldEndAsync(cancellationToken);
       }
       await oprot.WriteFieldStopAsync(cancellationToken);
@@ -134,9 +197,10 @@ public partial class TCloseSessionReq : TBase
 
   public override bool Equals(object that)
   {
-    if (!(that is TCloseSessionReq other)) return false;
+    if (!(that is TSetClientInfoReq other)) return false;
     if (ReferenceEquals(this, other)) return true;
-    return global::System.Object.Equals(SessionHandle, other.SessionHandle);
+    return global::System.Object.Equals(SessionHandle, other.SessionHandle)
+      && ((__isset.@configuration == other.__isset.@configuration) && ((!__isset.@configuration) || (TCollections.Equals(Configuration, other.Configuration))));
   }
 
   public override int GetHashCode() {
@@ -146,20 +210,29 @@ public partial class TCloseSessionReq : TBase
       {
         hashcode = (hashcode * 397) + SessionHandle.GetHashCode();
       }
+      if((Configuration != null) && __isset.@configuration)
+      {
+        hashcode = (hashcode * 397) + TCollections.GetHashCode(Configuration);
+      }
     }
     return hashcode;
   }
 
   public override string ToString()
   {
-    var tmp284 = new StringBuilder("TCloseSessionReq(");
+    var sb = new StringBuilder("TSetClientInfoReq(");
     if((SessionHandle != null))
     {
-      tmp284.Append(", SessionHandle: ");
-      SessionHandle.ToString(tmp284);
+      sb.Append(", SessionHandle: ");
+      sb.Append(SessionHandle);
     }
-    tmp284.Append(')');
-    return tmp284.ToString();
+    if((Configuration != null) && __isset.@configuration)
+    {
+      sb.Append(", Configuration: ");
+      sb.Append(Configuration);
+    }
+    sb.Append(')');
+    return sb.ToString();
   }
 }
 
