@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
+using SparkSqlClient.generated;
 using Thrift;
 using Thrift.Collections;
 using Thrift.Protocol;
@@ -3682,16 +3683,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp830 = new StringBuilder("GetCatalogs_result(");
+        var sb = new StringBuilder("GetCatalogs_result(");
         int tmp831 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp831++) { tmp830.Append(", "); }
-          tmp830.Append("Success: ");
-          Success.ToString(tmp830);
+          if(0 < tmp831++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp830.Append(')');
-        return tmp830.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -3825,16 +3826,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp835 = new StringBuilder("GetSchemas_args(");
+        var sb = new StringBuilder("GetSchemas_args(");
         int tmp836 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp836++) { tmp835.Append(", "); }
-          tmp835.Append("Req: ");
-          Req.ToString(tmp835);
+          if(0 < tmp836++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp835.Append(')');
-        return tmp835.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -3972,16 +3973,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp840 = new StringBuilder("GetSchemas_result(");
+        var sb = new StringBuilder("GetSchemas_result(");
         int tmp841 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp841++) { tmp840.Append(", "); }
-          tmp840.Append("Success: ");
-          Success.ToString(tmp840);
+          if(0 < tmp841++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp840.Append(')');
-        return tmp840.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -4115,16 +4116,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp845 = new StringBuilder("GetTables_args(");
+        var sb = new StringBuilder("GetTables_args(");
         int tmp846 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp846++) { tmp845.Append(", "); }
-          tmp845.Append("Req: ");
-          Req.ToString(tmp845);
+          if(0 < tmp846++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp845.Append(')');
-        return tmp845.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -4262,16 +4263,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp850 = new StringBuilder("GetTables_result(");
+        var sb = new StringBuilder("GetTables_result(");
         int tmp851 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp851++) { tmp850.Append(", "); }
-          tmp850.Append("Success: ");
-          Success.ToString(tmp850);
+          if(0 < tmp851++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp850.Append(')');
-        return tmp850.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -4405,16 +4406,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp855 = new StringBuilder("GetTableTypes_args(");
+        var sb = new StringBuilder("GetTableTypes_args(");
         int tmp856 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp856++) { tmp855.Append(", "); }
-          tmp855.Append("Req: ");
-          Req.ToString(tmp855);
+          if(0 < tmp856++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp855.Append(')');
-        return tmp855.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -4552,16 +4553,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp860 = new StringBuilder("GetTableTypes_result(");
+        var sb = new StringBuilder("GetTableTypes_result(");
         int tmp861 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp861++) { tmp860.Append(", "); }
-          tmp860.Append("Success: ");
-          Success.ToString(tmp860);
+          if(0 < tmp861++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp860.Append(')');
-        return tmp860.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -4695,16 +4696,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp865 = new StringBuilder("GetColumns_args(");
+        var sb = new StringBuilder("GetColumns_args(");
         int tmp866 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp866++) { tmp865.Append(", "); }
-          tmp865.Append("Req: ");
-          Req.ToString(tmp865);
+          if(0 < tmp866++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp865.Append(')');
-        return tmp865.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -4842,16 +4843,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp870 = new StringBuilder("GetColumns_result(");
+        var sb = new StringBuilder("GetColumns_result(");
         int tmp871 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp871++) { tmp870.Append(", "); }
-          tmp870.Append("Success: ");
-          Success.ToString(tmp870);
+          if(0 < tmp871++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp870.Append(')');
-        return tmp870.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -4985,16 +4986,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp875 = new StringBuilder("GetFunctions_args(");
+        var sb = new StringBuilder("GetFunctions_args(");
         int tmp876 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp876++) { tmp875.Append(", "); }
-          tmp875.Append("Req: ");
-          Req.ToString(tmp875);
+          if(0 < tmp876++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp875.Append(')');
-        return tmp875.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -5132,16 +5133,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp880 = new StringBuilder("GetFunctions_result(");
+        var sb = new StringBuilder("GetFunctions_result(");
         int tmp881 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp881++) { tmp880.Append(", "); }
-          tmp880.Append("Success: ");
-          Success.ToString(tmp880);
+          if(0 < tmp881++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp880.Append(')');
-        return tmp880.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -5275,16 +5276,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp885 = new StringBuilder("GetPrimaryKeys_args(");
+        var sb = new StringBuilder("GetPrimaryKeys_args(");
         int tmp886 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp886++) { tmp885.Append(", "); }
-          tmp885.Append("Req: ");
-          Req.ToString(tmp885);
+          if(0 < tmp886++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp885.Append(')');
-        return tmp885.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -5422,16 +5423,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp890 = new StringBuilder("GetPrimaryKeys_result(");
+        var sb = new StringBuilder("GetPrimaryKeys_result(");
         int tmp891 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp891++) { tmp890.Append(", "); }
-          tmp890.Append("Success: ");
-          Success.ToString(tmp890);
+          if(0 < tmp891++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp890.Append(')');
-        return tmp890.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -5566,16 +5567,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp895 = new StringBuilder("GetCrossReference_args(");
+        var sb = new StringBuilder("GetCrossReference_args(");
         int tmp896 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp896++) { tmp895.Append(", "); }
-          tmp895.Append("Req: ");
-          Req.ToString(tmp895);
+          if(0 < tmp896++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp895.Append(')');
-        return tmp895.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -5713,16 +5714,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp900 = new StringBuilder("GetCrossReference_result(");
+        var sb = new StringBuilder("GetCrossReference_result(");
         int tmp901 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp901++) { tmp900.Append(", "); }
-          tmp900.Append("Success: ");
-          Success.ToString(tmp900);
+          if(0 < tmp901++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp900.Append(')');
-        return tmp900.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -5856,16 +5857,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp905 = new StringBuilder("GetOperationStatus_args(");
+        var sb = new StringBuilder("GetOperationStatus_args(");
         int tmp906 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp906++) { tmp905.Append(", "); }
-          tmp905.Append("Req: ");
-          Req.ToString(tmp905);
+          if(0 < tmp906++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp905.Append(')');
-        return tmp905.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -6003,16 +6004,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp910 = new StringBuilder("GetOperationStatus_result(");
+        var sb = new StringBuilder("GetOperationStatus_result(");
         int tmp911 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp911++) { tmp910.Append(", "); }
-          tmp910.Append("Success: ");
-          Success.ToString(tmp910);
+          if(0 < tmp911++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp910.Append(')');
-        return tmp910.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -6146,16 +6147,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp915 = new StringBuilder("CancelOperation_args(");
+        var sb = new StringBuilder("CancelOperation_args(");
         int tmp916 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp916++) { tmp915.Append(", "); }
-          tmp915.Append("Req: ");
-          Req.ToString(tmp915);
+          if(0 < tmp916++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp915.Append(')');
-        return tmp915.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -6293,16 +6294,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp920 = new StringBuilder("CancelOperation_result(");
+        var sb = new StringBuilder("CancelOperation_result(");
         int tmp921 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp921++) { tmp920.Append(", "); }
-          tmp920.Append("Success: ");
-          Success.ToString(tmp920);
+          if(0 < tmp921++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp920.Append(')');
-        return tmp920.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -6726,16 +6727,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp935 = new StringBuilder("GetResultSetMetadata_args(");
+        var sb = new StringBuilder("GetResultSetMetadata_args(");
         int tmp936 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp936++) { tmp935.Append(", "); }
-          tmp935.Append("Req: ");
-          Req.ToString(tmp935);
+          if(0 < tmp936++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp935.Append(')');
-        return tmp935.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -6873,16 +6874,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp940 = new StringBuilder("GetResultSetMetadata_result(");
+        var sb = new StringBuilder("GetResultSetMetadata_result(");
         int tmp941 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp941++) { tmp940.Append(", "); }
-          tmp940.Append("Success: ");
-          Success.ToString(tmp940);
+          if(0 < tmp941++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp940.Append(')');
-        return tmp940.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -7016,16 +7017,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp945 = new StringBuilder("FetchResults_args(");
+        var sb = new StringBuilder("FetchResults_args(");
         int tmp946 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp946++) { tmp945.Append(", "); }
-          tmp945.Append("Req: ");
-          Req.ToString(tmp945);
+          if(0 < tmp946++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp945.Append(')');
-        return tmp945.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -7163,16 +7164,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp950 = new StringBuilder("FetchResults_result(");
+        var sb = new StringBuilder("FetchResults_result(");
         int tmp951 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp951++) { tmp950.Append(", "); }
-          tmp950.Append("Success: ");
-          Success.ToString(tmp950);
+          if(0 < tmp951++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp950.Append(')');
-        return tmp950.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -7306,16 +7307,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp955 = new StringBuilder("GetDelegationToken_args(");
+        var sb = new StringBuilder("GetDelegationToken_args(");
         int tmp956 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp956++) { tmp955.Append(", "); }
-          tmp955.Append("Req: ");
-          Req.ToString(tmp955);
+          if(0 < tmp956++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp955.Append(')');
-        return tmp955.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -7453,16 +7454,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp960 = new StringBuilder("GetDelegationToken_result(");
+        var sb = new StringBuilder("GetDelegationToken_result(");
         int tmp961 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp961++) { tmp960.Append(", "); }
-          tmp960.Append("Success: ");
-          Success.ToString(tmp960);
+          if(0 < tmp961++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp960.Append(')');
-        return tmp960.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -7596,16 +7597,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp965 = new StringBuilder("CancelDelegationToken_args(");
+        var sb = new StringBuilder("CancelDelegationToken_args(");
         int tmp966 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp966++) { tmp965.Append(", "); }
-          tmp965.Append("Req: ");
-          Req.ToString(tmp965);
+          if(0 < tmp966++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp965.Append(')');
-        return tmp965.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -7743,16 +7744,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp970 = new StringBuilder("CancelDelegationToken_result(");
+        var sb = new StringBuilder("CancelDelegationToken_result(");
         int tmp971 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp971++) { tmp970.Append(", "); }
-          tmp970.Append("Success: ");
-          Success.ToString(tmp970);
+          if(0 < tmp971++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp970.Append(')');
-        return tmp970.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -7886,16 +7887,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp975 = new StringBuilder("RenewDelegationToken_args(");
+        var sb = new StringBuilder("RenewDelegationToken_args(");
         int tmp976 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp976++) { tmp975.Append(", "); }
-          tmp975.Append("Req: ");
-          Req.ToString(tmp975);
+          if(0 < tmp976++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp975.Append(')');
-        return tmp975.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -8033,16 +8034,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp980 = new StringBuilder("RenewDelegationToken_result(");
+        var sb = new StringBuilder("RenewDelegationToken_result(");
         int tmp981 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp981++) { tmp980.Append(", "); }
-          tmp980.Append("Success: ");
-          Success.ToString(tmp980);
+          if(0 < tmp981++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp980.Append(')');
-        return tmp980.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -8323,16 +8324,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp990 = new StringBuilder("GetQueryId_result(");
+        var sb = new StringBuilder("GetQueryId_result(");
         int tmp991 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp991++) { tmp990.Append(", "); }
-          tmp990.Append("Success: ");
-          Success.ToString(tmp990);
+          if(0 < tmp991++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp990.Append(')');
-        return tmp990.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -8466,16 +8467,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp995 = new StringBuilder("SetClientInfo_args(");
+        var sb = new StringBuilder("SetClientInfo_args(");
         int tmp996 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp996++) { tmp995.Append(", "); }
-          tmp995.Append("Req: ");
-          Req.ToString(tmp995);
+          if(0 < tmp996++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp995.Append(')');
-        return tmp995.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -8756,16 +8757,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp1005 = new StringBuilder("UploadData_args(");
+        var sb = new StringBuilder("UploadData_args(");
         int tmp1006 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp1006++) { tmp1005.Append(", "); }
-          tmp1005.Append("Req: ");
-          Req.ToString(tmp1005);
+          if(0 < tmp1006++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp1005.Append(')');
-        return tmp1005.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -8903,16 +8904,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp1010 = new StringBuilder("UploadData_result(");
+        var sb = new StringBuilder("UploadData_result(");
         int tmp1011 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp1011++) { tmp1010.Append(", "); }
-          tmp1010.Append("Success: ");
-          Success.ToString(tmp1010);
+          if(0 < tmp1011++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp1010.Append(')');
-        return tmp1010.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -9046,16 +9047,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp1015 = new StringBuilder("DownloadData_args(");
+        var sb = new StringBuilder("DownloadData_args(");
         int tmp1016 = 0;
         if((Req != null) && __isset.@req)
         {
-          if(0 < tmp1016++) { tmp1015.Append(", "); }
-          tmp1015.Append("Req: ");
-          Req.ToString(tmp1015);
+          if(0 < tmp1016++) { sb.Append(", "); }
+          sb.Append("Req: ");
+          sb.Append(Req);
         }
-        tmp1015.Append(')');
-        return tmp1015.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
@@ -9193,16 +9194,16 @@ public partial class TCLIService
 
       public override string ToString()
       {
-        var tmp1020 = new StringBuilder("DownloadData_result(");
+        var sb = new StringBuilder("DownloadData_result(");
         int tmp1021 = 0;
         if((Success != null) && __isset.@success)
         {
-          if(0 < tmp1021++) { tmp1020.Append(", "); }
-          tmp1020.Append("Success: ");
-          Success.ToString(tmp1020);
+          if(0 < tmp1021++) { sb.Append(", "); }
+          sb.Append("Success: ");
+          sb.Append(Success);
         }
-        tmp1020.Append(')');
-        return tmp1020.ToString();
+        sb.Append(')');
+        return sb.ToString();
       }
     }
 
